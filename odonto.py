@@ -28,7 +28,12 @@ with st.form("form_historia_clinica"):
         edad = st.number_input("Edad", min_value=0, step=1)
         sexo = st.selectbox("Sexo", ["Masculino", "Femenino", "Otro"])
     with col2:
-        fecha_nacimiento = st.date_input("Fecha de nacimiento")
+        fecha_nacimiento = st.date_input(
+    "Fecha de nacimiento",
+    min_value=datetime(1900, 1, 1),
+    max_value=datetime.today()
+)
+
         lugar_nacimiento = st.text_input("Lugar de nacimiento")
         curp = st.text_input("CURP")
     with col3:
