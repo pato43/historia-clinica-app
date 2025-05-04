@@ -21,23 +21,25 @@ with st.form("form_historia_clinica"):
 
     st.markdown("---")
     st.subheader("👤 Datos Generales del Paciente")
-    col_a, col_b, col_c = st.columns(3)
-    with col_a:
-        nombre_paciente = st.text_input("Nombre completo del paciente")
-        sexo = st.selectbox("Sexo", ["Masculino", "Femenino", "Otro"])
-        curp = st.text_input("CURP")
-    with col_b:
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        nombre_paciente = st.text_input("Nombre completo")
         edad = st.number_input("Edad", min_value=0, step=1)
+        sexo = st.selectbox("Sexo", ["Masculino", "Femenino", "Otro"])
+    with col2:
         fecha_nacimiento = st.date_input("Fecha de nacimiento")
         lugar_nacimiento = st.text_input("Lugar de nacimiento")
-    with col_c:
+        curp = st.text_input("CURP")
+    with col3:
         estado_civil = st.selectbox("Estado civil", ["Soltero(a)", "Casado(a)", "Viudo(a)", "Unión libre", "Otro"])
         religion = st.text_input("Religión")
-        escolaridad = st.selectbox("Grado máximo de estudios", ["Primaria", "Secundaria", "Preparatoria", "Licenciatura", "Maestría", "Doctorado", "Otro"])
+        escolaridad = st.selectbox("Escolaridad", ["Primaria", "Secundaria", "Preparatoria", "Licenciatura", "Maestría", "Doctorado", "Otro"])
 
-    col4, col5 = st.columns([2,1])
+    col4, col5 = st.columns([2, 1])
     with col4:
-        domicilio = st.text_area("Domicilio actual (calle, número, colonia, municipio, estado)")
+        domicilio = st.text_area("Domicilio completo (calle, número, colonia, municipio)")
+        ocupacion = st.text_input("Ocupación actual")
     with col5:
         telefono = st.text_input("Teléfono de contacto")
         correo = st.text_input("Correo electrónico")
