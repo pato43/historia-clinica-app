@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import io
 from fpdf import FPDF
-from datetime import date
+from datetime import date, datetime
 import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Historia Clínica UPEM", layout="wide")
@@ -20,39 +20,33 @@ with st.form("form_historia_clinica"):
         fecha_ingreso = st.date_input("Fecha de ingreso del paciente")
 
     st.markdown("---")
-    from datetime import datetime
+    st.subheader("👤 Datos Generales del Paciente")
 
-    with st.form("form_historia_clinica"):
-        st.subheader("👤 Datos Generales del Paciente")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        nombre_paciente = st.text_input("Nombre completo")
+        edad = st.number_input("Edad", min_value=0, step=1)
+        sexo = st.selectbox("Sexo", ["Masculino", "Femenino", "Otro"])
+    with col2:
+        fecha_nacimiento = st.date_input(
+            "Fecha de nacimiento",
+            min_value=datetime(1900, 1, 1),
+            max_value=datetime.today()
+        )
+        lugar_nacimiento = st.text_input("Lugar de nacimiento")
+        curp = st.text_input("CURP")
+    with col3:
+        estado_civil = st.selectbox("Estado civil", ["Soltero(a)", "Casado(a)", "Viudo(a)", "Unión libre", "Otro"])
+        religion = st.text_input("Religión")
+        escolaridad = st.selectbox("Escolaridad", ["Primaria", "Secundaria", "Preparatoria", "Licenciatura", "Maestría", "Doctorado", "Otro"])
 
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            nombre_paciente = st.text_input("Nombre completo")
-            edad = st.number_input("Edad", min_value=0, step=1)
-            sexo = st.selectbox("Sexo", ["Masculino", "Femenino", "Otro"])
-        with col2:
-            fecha_nacimiento = st.date_input(
-                "Fecha de nacimiento",
-                min_value=datetime(1900, 1, 1),
-                max_value=datetime.today()
-            )
-            lugar_nacimiento = st.text_input("Lugar de nacimiento")
-            curp = st.text_input("CURP")
-        with col3:
-            estado_civil = st.selectbox("Estado civil", ["Soltero(a)", "Casado(a)", "Viudo(a)", "Unión libre", "Otro"])
-            religion = st.text_input("Religión")
-            escolaridad = st.selectbox("Escolaridad", ["Primaria", "Secundaria", "Preparatoria", "Licenciatura", "Maestría", "Doctorado", "Otro"])
-
-        col4, col5 = st.columns([2, 1])
-        with col4:
-            domicilio = st.text_area("Domicilio completo (calle, número, colonia, municipio, estado)")
-            ocupacion = st.text_input("Ocupación actual")
-        with col5:
-            telefono = st.text_input("Teléfono de contacto")
-            correo = st.text_input("Correo electrónico")
-
-        submitted = st.form_submit_button("📄 Generar Historia Clínica en PDF")
-
+    col4, col5 = st.columns([2, 1])
+    with col4:
+        domicilio = st.text_area("Domicilio completo (calle, número, colonia, municipio, estado)")
+        ocupacion = st.text_input("Ocupación actual")
+    with col5:
+        telefono = st.text_input("Teléfono de contacto")
+        correo = st.text_input("Correo electrónico")
 
     st.markdown("### 🧬 Contexto Sociocultural")
     grupo_etnico = st.selectbox("¿Pertenece a algún grupo étnico?", ["No", "Sí - Indígena", "Sí - Afrodescendiente", "Otro"])
