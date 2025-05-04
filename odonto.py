@@ -29,11 +29,10 @@ with st.form("form_historia_clinica"):
         sexo = st.selectbox("Sexo", ["Masculino", "Femenino", "Otro"])
     with col2:
         fecha_nacimiento = st.date_input(
-    "Fecha de nacimiento",
-    min_value=datetime(1900, 1, 1),
-    max_value=datetime.today()
-)
-
+            "Fecha de nacimiento",
+            min_value=datetime(1900, 1, 1),
+            max_value=datetime.today()
+        )
         lugar_nacimiento = st.text_input("Lugar de nacimiento")
         curp = st.text_input("CURP")
     with col3:
@@ -43,12 +42,11 @@ with st.form("form_historia_clinica"):
 
     col4, col5 = st.columns([2, 1])
     with col4:
-        domicilio = st.text_area("Domicilio completo (calle, número, colonia, municipio)")
+        domicilio = st.text_area("Domicilio completo (calle, número, colonia, municipio, estado)")
         ocupacion = st.text_input("Ocupación actual")
     with col5:
         telefono = st.text_input("Teléfono de contacto")
         correo = st.text_input("Correo electrónico")
-
     st.markdown("### 👨‍👩‍👧‍👦 Información Familiar")
     col_f1, col_f2 = st.columns(2)
     with col_f1:
