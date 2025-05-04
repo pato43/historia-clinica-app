@@ -20,9 +20,12 @@ with st.form("form_historia_clinica"):
         fecha_ingreso = st.date_input("Fecha de ingreso del paciente")
 
     st.markdown("---")
+    from datetime import datetime
+
+    with st.form("form_historia_clinica"):
     st.subheader("👤 Datos Generales del Paciente")
 
-    col1, col2, col3 = st.columns(3)
+        col1, col2, col3 = st.columns(3)
     with col1:
         nombre_paciente = st.text_input("Nombre completo")
         edad = st.number_input("Edad", min_value=0, step=1)
@@ -47,14 +50,9 @@ with st.form("form_historia_clinica"):
     with col5:
         telefono = st.text_input("Teléfono de contacto")
         correo = st.text_input("Correo electrónico")
-    st.markdown("### 👨‍👩‍👧‍👦 Información Familiar")
-    col_f1, col_f2 = st.columns(2)
-    with col_f1:
-        nombre_tutor = st.text_input("Nombre del padre/madre o tutor legal")
-        parentesco = st.selectbox("Parentesco", ["Padre", "Madre", "Hermano(a)", "Tutor(a)", "Otro"])
-    with col_f2:
-        telefono_tutor = st.text_input("Teléfono del tutor legal")
-        vive_con_paciente = st.radio("¿Vive con el paciente?", ["Sí", "No"])
+
+    submitted = st.form_submit_button("📄 Generar Historia Clínica en PDF")
+
 
     st.markdown("### 🧬 Contexto Sociocultural")
     grupo_etnico = st.selectbox("¿Pertenece a algún grupo étnico?", ["No", "Sí - Indígena", "Sí - Afrodescendiente", "Otro"])
